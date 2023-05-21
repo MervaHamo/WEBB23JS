@@ -118,7 +118,7 @@ function createTableWithNumbers() {
     cell.style.border = tableBorder;
     cell.style.textAlign = 'center';
     row.appendChild(cell);
-    table.appendChild(row);
+    table.appendChild/imgres(row);
 
     if (i % 2 === 0) {
       row.style.backgroundColor = 'white'; 
