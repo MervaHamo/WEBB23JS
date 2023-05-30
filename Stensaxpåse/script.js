@@ -3,7 +3,9 @@ let playerScore = 0;
 let computerScore = 0;
 let round = 1;
 
-function startGame() {
+function startGame(event) {
+  event.preventDefault();
+
   const nameInput = document.getElementById('name-input');
   playerName = nameInput.value;
   nameInput.disabled = true;
@@ -11,7 +13,7 @@ function startGame() {
   document.getElementById('player-score').textContent = `Spelare: 0`;
   document.getElementById('computer-score').textContent = `Datorn: 0`;
 
-  document.getElementById('player-name').classList.add('hidden');
+  document.getElementById('player-form').classList.add('hidden');
   document.getElementById('game').classList.remove('hidden');
 }
 
@@ -26,7 +28,7 @@ function playRound(playerChoice) {
   
   round++;
 
-  if (round > 3) {
+  if (playerScore === 3 || computerScore === 3) {
     endGame();
   } else {
     document.getElementById('round').textContent = `Omgång ${round}`;
@@ -90,10 +92,14 @@ function endGame() {
   document.getElementById('result-message').classList.add('hidden');
   document.body.appendChild(winnerMessage);
 
-  const playAgainButton = document.createElement('button');
-  playAgainButton.textContent = 'Spela igen';
-  playAgainButton.onclick = restartGame;
-  document.body.appendChild(playAgainButton);
+  const playAgainButton = document.querySelector('#play-again-button');
+  if (!playAgainButton) {
+    const button = document.createElement('button');
+    button.textContent = 'Spela igen';
+    button.id = 'play-again-button';
+    button.onclick = restartGame;
+    document.body.appendChild(button);
+  }
 }
 
 function restartGame() {
@@ -106,7 +112,7 @@ function restartGame() {
   nameInput.disabled = false;
   nameInput.value = '';
 
-  document.getElementById('player-name').classList.remove('hidden');
+  document.getElementById('player-form').classList.remove('hidden');
   document.getElementById('game').classList.add('hidden');
   
   document.getElementById('result-message').textContent = '';
@@ -116,7 +122,7 @@ function restartGame() {
     document.body.removeChild(winnerMessage);
   }
 
-  const playAgainButton = document.querySelector('button');
+  const playAgainButton = document.querySelector('#play-again-button');
   if (playAgainButton) {
     document.body.removeChild(playAgainButton);
   }
