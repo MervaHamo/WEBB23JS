@@ -21,6 +21,8 @@ function playRound(playerChoice) {
   const choices = ['rock', 'paper', 'scissors'];
   const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
+  showSelections(playerChoice, computerChoice);
+
   const result = determineWinner(playerChoice, computerChoice);
 
   updateScore(result);
@@ -34,6 +36,14 @@ function playRound(playerChoice) {
     document.getElementById('round').textContent = `Omgång ${round}`;
   }
 }
+
+function showSelections(playerChoice, computerChoice) {
+  document.getElementById('player-selection').textContent = `Spelare valde: ${playerChoice}`;
+  document.getElementById('computer-selection').textContent = `Datorn valde: ${computerChoice}`;
+  document.getElementById('selections').classList.remove('hidden');
+}
+
+
 
 function determineWinner(playerChoice, computerChoice) {
   if (

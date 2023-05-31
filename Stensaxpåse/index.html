@@ -17,12 +17,16 @@
     <h2 id="round">Omgång 1</h2>
     <h3 id="player-score">Spelare: 0</h3>
     <h3 id="computer-score">Datorn: 0</h3>
-    <h2 id="result-message"></h2>
     <div id="choices">
       <button onclick="playRound('rock')">Sten</button>
       <button onclick="playRound('paper')">Påse</button>
       <button onclick="playRound('scissors')">Sax</button>
     </div>
+    <div id="selections" class="hidden">
+      <p id="player-selection">Spelare valde: </p>
+      <p id="computer-selection">Datorn valde: </p>
+    </div>
+    <h2 id="result-message"></h2>
   </div>
 
   <script src="script.js"></script>
